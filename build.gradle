@@ -22,7 +22,8 @@ jar {
     baseName = 'masterSpring'
     version = '0.0.1-SNAPSHOT'
 }
-
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 /*A dependency on the Spring Boot plugin distributed on Maven central . Hostes by Maven central*/
 repositories {
