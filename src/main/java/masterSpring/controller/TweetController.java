@@ -1,5 +1,6 @@
 package masterSpring.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.social.twitter.api.SearchResults;
 import org.springframework.social.twitter.api.Tweet;
 import org.springframework.social.twitter.api.Twitter;
@@ -15,6 +16,7 @@ import java.util.stream.Collectors;
 @Controller
 public class TweetController {
 
+    @Autowired
     private Twitter twitter ;
 
     @RequestMapping("/")
@@ -32,3 +34,4 @@ public class TweetController {
     }
 
 }
+
