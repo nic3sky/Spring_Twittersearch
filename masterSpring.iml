@@ -78,5 +78,7 @@
     <orderEntry type="library" name="Gradle: javax.inject:javax.inject:1" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework.security:spring-security-crypto:4.0.3.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework.social:spring-social-web:1.1.0.RELEASE" level="project" />
+    <orderEntry type="library" name="Gradle: org.webjars:materializecss:0.96.0" level="project" />
+    <orderEntry type="library" name="Gradle: org.webjars:jquery:2.1.4" level="project" />
   </component>
 </module>

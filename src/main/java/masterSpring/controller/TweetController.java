@@ -7,31 +7,49 @@ import org.springframework.social.twitter.api.Twitter;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
-import java.util.stream.Collectors;
 
 
 @Controller
 public class TweetController {
 
     @Autowired
-    private Twitter twitter ;
+    private Twitter twitter;
 
     @RequestMapping("/")
+    public String Home() {
+        return "searchPage";
+    }
 
-    public String Hello(@RequestParam(defaultValue = "SpringMVC") String search , Model model){
+    @RequestMapping("/result")
+
+    public String Hello(@RequestParam(defaultValue = "OverWatch") String search, Model model) {
         SearchResults searchResult = twitter.searchOperations().search(search);
 
-        List<String> tweets = searchResult.getTweets()
-                .stream().map(Tweet::getText)
-                .collect(Collectors.toList());
+        List<Tweet> tweets = searchResult.getTweets();
 
+        model.addAttribute("search", search);
         model.addAttribute("tweets", tweets);
 
         return "resultPage";
     }
+
+    @RequestMapping(value = "/postSearch", method = RequestMethod.POST)
+    public String postSearch(HttpServletRequest request, RedirectAttributes redirectAttributes) {
+        String search = request.getParameter("search");
+        if (search.toLowerCase().contains("struts")) {
+            redirectAttributes.addFlashAttribute("error", "Try using another word");
+            return "redirect:/";
+        }
+        redirectAttributes.addAttribute("search", search);
+        return "redirect:result";
+    }
+
 
 }
 
