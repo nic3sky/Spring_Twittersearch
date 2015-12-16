@@ -1,5 +1,6 @@
 package masterSpring.profile;
 
+import masterSpring.date.PastLocalDate;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -9,11 +10,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Sang on 12/15/2015.
- */
 public class ProfileForm {
-    @Size(min = 2)
+    @Size(min = 2 ,message = "Twitter handle please !")
     private String  twitterHandle;
 
     @Email
@@ -21,8 +19,41 @@ public class ProfileForm {
     private String email;
 
     @NotNull
+    @PastLocalDate
     private LocalDate   birthDate;
 
     @NotEmpty
     private List<String>    tastes = new ArrayList<>();
+
+    public String getTwitterHandle() {
+        return twitterHandle;
+    }
+
+    public void setTwitterHandle(String twitterHandle) {
+        this.twitterHandle = twitterHandle;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public LocalDate getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public List<String> getTastes() {
+        return tastes;
+    }
+
+    public void setTastes(List<String> tastes) {
+        this.tastes = tastes;
+    }
 }

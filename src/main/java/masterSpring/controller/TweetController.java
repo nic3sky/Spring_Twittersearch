@@ -42,7 +42,7 @@ public class TweetController {
     @RequestMapping(value = "/postSearch", method = RequestMethod.POST)
     public String postSearch(HttpServletRequest request, RedirectAttributes redirectAttributes) {
         String search = request.getParameter("search");
-        if (search.toLowerCase().contains("struts")) {
+        if (search.toLowerCase().contains("sex")) {
             redirectAttributes.addFlashAttribute("error", "Try using another word");
             return "redirect:/";
         }

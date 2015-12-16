@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.Locale;
 
@@ -17,6 +18,7 @@ public class ProfileController {
     public String displayProfile() {
         return "profile/profilePage";
     }
+
 
     @RequestMapping(value = "/profile", method = RequestMethod.POST)
     public String saveProfile(@Valid ProfileForm profileForm , BindingResult    bindingResult) {
@@ -29,7 +31,23 @@ public class ProfileController {
 
 
     @ModelAttribute("dateFormat")
-    public String localFormat(Locale locale) {
+    public String localeFormat(Locale locale) {
     return ReLocalDateFormat.getPattern(locale);
     }
+
+
+    @RequestMapping(value = "/profile", params = {"addtaste"})
+    public String addRow(ProfileForm profileForm) {
+        profileForm.getTastes();
+        return "profile/profilePage";
+    }
+    @RequestMapping(value = "/profile", params = {"removetaste"})
+    public String removeRow(ProfileForm profileForm,
+                            HttpServletRequest req) {
+        Integer rowId = Integer.valueOf(req.
+                getParameter("removeTaste"));
+        profileForm.getTastes().remove(rowId.intValue());
+        return "profile/profilePage";
+    }
+
 }
