@@ -13,6 +13,7 @@ import java.util.Locale;
 
 
 @Controller
+
 public class ProfileController {
     @RequestMapping("/profile")
     public String displayProfile() {
@@ -44,8 +45,7 @@ public class ProfileController {
     @RequestMapping(value = "/profile", params = {"removetaste"})
     public String removeRow(ProfileForm profileForm,
                             HttpServletRequest req) {
-        Integer rowId = Integer.valueOf(req.
-                getParameter("removeTaste"));
+        Integer rowId = Integer.valueOf(req.getParameter("removeTaste"));
         profileForm.getTastes().remove(rowId.intValue());
         return "profile/profilePage";
     }
